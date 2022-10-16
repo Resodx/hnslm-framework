@@ -1,16 +1,19 @@
 {
-    "require": {
-        "php": ">= 8.1"
-    },
+    "name": "helyederson/hnslm-framework",
+    "description": "Simple PHP router/framework made for study/practice purpose.",
+    "type": "library",
+    "license": "MIT",
     "authors": [
         {
-            "email": "helyedersonnaves@hotmail.com",
-            "name": "Helyederson Naves"
+            "name": "Helyederson Naves",
+            "email": "helyedersonnaves@hotmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Framework\\": "src/framework/"
+            "Framework\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "require": {}
 }
