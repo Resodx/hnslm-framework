@@ -7,7 +7,7 @@ use ReflectionClass;
 use stdClass;
 use Framework\MVC\Model\AbstractModel;
 
-abstract class AbstractController
+abstract class AbstractControllerApi
 {
 
     protected AbstractModel $model;
@@ -19,14 +19,12 @@ abstract class AbstractController
         $this->request = $_REQUEST;
         $this->model = $model;
 
-        $this->request = match($_SERVER['REQUEST_METHOD']) {
+        $this->request = match ($_SERVER['REQUEST_METHOD']) {
             'GET' => $_GET,
             'POST' => $_POST,
-            'PUT','DELETE' => $this->parseInput(),
+            'PUT', 'DELETE' => $this->parseInput(),
             default => throw new Exception('Invalid Request', 400)
- 
         };
-
     }
 
     public function __destruct()
@@ -214,12 +212,11 @@ abstract class AbstractController
     {
         $input = file_get_contents('php://input');
         json_decode($input);
-        if(json_decode($input) && json_last_error() === JSON_ERROR_NONE) {
+        if (json_decode($input) && json_last_error() === JSON_ERROR_NONE) {
             $input = json_decode($input, true);
         } else {
             parse_str(file_get_contents('php://input'), $input);
         }
         return $input;
     }
-
 }
