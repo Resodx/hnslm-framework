@@ -186,28 +186,6 @@ abstract class AbstractControllerApi
         }
     }
 
-    protected function render($class, $layout)
-    {
-        $this->class->page = $class;
-        if (file_exists("../App/View/" . $layout . ".phtml")) {
-            require_once "../App/View/" . $layout . ".phtml";
-        } else {
-            $this->loadContent();
-        }
-    }
-
-    private function loadContent()
-    {
-        $class = strtolower(str_replace('App\\Controller\\', '', get_class($this)));
-
-        if (file_exists("../App/View/" . $class . "/" . $this->class->page . ".phtml")) {
-            require_once "../App/View/" . $class . "/" . $this->class->page . ".phtml";
-        } else {
-            http_response_code(404);
-            exit;
-        }
-    }
-
     function parseInput()
     {
         $input = file_get_contents('php://input');
