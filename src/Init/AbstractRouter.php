@@ -41,8 +41,8 @@ abstract class AbstractRouter
             if ($url == $route['route']) {
                 $pageExists = true;
                 $controller_path = $route['controller'];
-                $model_path = $route['model'];
-                $controller = new $controller_path($route['model'] ? new $model_path : null);
+                $model = array_key_exists('model', $route) ? new $route['model'] : null;
+                $controller = new $controller_path($model);
                 $action = $route['action'];
                 exit($controller->$action());
             }

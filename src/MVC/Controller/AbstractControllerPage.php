@@ -32,8 +32,8 @@ abstract class AbstractControllerPage
     protected function render($view, $layout)
     {
         $this->view->page = $view;
-        if (file_exists("../App/View/" . $layout . ".phtml")) {
-            require_once "../App/View/" . $layout . ".phtml";
+        if (file_exists($layout)) {
+            require_once $layout;
         } else {
             $this->loadContent();
         }
@@ -41,10 +41,8 @@ abstract class AbstractControllerPage
 
     private function loadContent()
     {
-        $view = strtolower(str_replace('App\\Controller\\', '', get_class($this)));
-
-        if (file_exists("../App/View/" . $view . "/" . $this->view->page . ".phtml")) {
-            require_once "../App/View/" . $view . "/" . $this->view->page . ".phtml";
+        if (file_exists($this->view->page)) {
+            require_once $this->view->page;
         } else {
             http_response_code(404);
             exit;
