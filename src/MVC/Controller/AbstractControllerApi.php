@@ -197,4 +197,6 @@ abstract class AbstractControllerApi
         }
         return $input;
     }
+
+    protected abstract function assertAll();
 }
