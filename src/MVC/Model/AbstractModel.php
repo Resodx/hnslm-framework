@@ -67,5 +67,16 @@ abstract class AbstractModel
         return $this->newQuery()->delete($id);
     }
 
+    public function where($column, $operator, $value)
+    {
+        return $this->newQuery()->where($column, $operator, $value);
+    }
+
+    public function customQuery($query, $data = [])
+    {
+        return $this->newQuery()->custom($query, $data);
+    }
+    
+
     protected abstract function populate();
 }

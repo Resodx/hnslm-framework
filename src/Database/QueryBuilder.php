@@ -116,6 +116,19 @@ class QueryBuilder
         }
     }
 
+    public function custom(string $query, array $params = [], $assoc = true)
+    {
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute($params);
+
+        if ($assoc) {
+            return $this->fetchList($stmt);
+        } else {
+            return $stmt;
+        }
+    }
+
+
     public function fetchObject($stmt)
     {
         if ($result = $stmt->fetchObject(PDO::FETCH_ASSOC)) {
