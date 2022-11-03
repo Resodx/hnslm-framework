@@ -21,7 +21,7 @@ abstract class AbstractControllerApi
 
         $this->request = match ($_SERVER['REQUEST_METHOD']) {
             'GET' => $_GET,
-            'POST' => $_POST,
+            'POST' => $_POST ? $_POST : json_decode(file_get_contents('php://input'), true),
             'PUT', 'DELETE' => $this->parseInput(),
             default => throw new Exception('Invalid Request', 400)
         };
